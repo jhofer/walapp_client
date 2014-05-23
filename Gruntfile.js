@@ -35,6 +35,11 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:dist']
       },
+      jade: {
+        files: ['<%= yeoman.app %>/views/{,*/}*.jade'],
+        tasks: ['newer:jade']
+      },
+
       coffeeTest: {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:test', 'karma']
@@ -54,6 +59,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '.tmp/scripts/{,*/}*.js',
+          '.tmp/views/{,*/}*.html',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -174,31 +180,19 @@ module.exports = function (grunt) {
 
     // Compiles Jade to HTML
     jade: {
-      options: {
-        sourceMap: true,
-        sourceRoot: ''
-      },
-      dist: {
-        files: [{
+      compile: {
+        options: {
+          pretty: true, //Output indented HTML.
+        },
+        files: [ {
           expand: true,
-          cwd: '<%= yeoman.app %>/scripts',
-          src: '{,*/}*.coffee',
-          dest: '.tmp/scripts',
-          ext: '.js'
-        }]
-      },
-      test: {
-        files: [{
-          expand: true,
-          cwd: 'test/spec',
-          src: '{,*/}*.coffee',
-          dest: '.tmp/spec',
-          ext: '.js'
+          cwd: '<%= yeoman.app %>/views',
+          src: '{,*/}*.jade',
+          dest: '.tmp/views',
+          ext: '.html'
         }]
       }
     },
-
-
 
 
     // Compiles Sass to CSS and generates necessary files if requested
@@ -351,6 +345,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
+            'cordova.js',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'fonts/*'
@@ -360,11 +355,16 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          cwd: '.tmp/views/',
+          dest: '<%= yeoman.dist %>/views',
+          src: ['{,*/}*.html']
         }]
       },
       styles: {
         expand: true,
-        cwd: '<%= yeoman.app %>/styles',
+        cwd: '<%= yeoman.app %>',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
       }
@@ -373,20 +373,34 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'jade',
         'coffee:dist',
         'compass:server'
       ],
       test: [
+        'jade',
         'coffee',
         'compass'
       ],
       dist: [
         'coffee',
+        'jade',
         'compass:dist',
         'imagemin',
         'svgmin'
       ]
     },
+
+
+    shell: {                                // Task
+        cordova: {                      // Target
+           command: [
+                'cd walapp',
+                'cordova -d emulate android'
+            ].join('&&')
+        }
+    },
+
 
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
@@ -466,7 +480,8 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'shell:cordova'
   ]);
 
   grunt.registerTask('default', [

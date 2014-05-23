@@ -1,0 +1,82 @@
+
+.navbar.navbar-inverse.navbar-fixed-top
+    .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#') WALAPP
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href='#') Home
+            li
+              a(href='#about') About
+            li
+              a(href='#contact') Contact
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                | Dropdown
+                b.caret
+              ul.dropdown-menu
+                li
+                  a(href='#') CHF
+                li
+                  a(href='#') Euro
+                li
+                  a(href='#') Something else here
+                li.divider
+                li.dropdown-header Nav header
+                li
+                  a(href='#') Separated link
+                li
+                  a(href='#') One more separated link
+          form.navbar-form.navbar-right
+            .form-group
+            .form-group
+              .drag-mask(data-ds-form='text_field', style='width: 177px; height: 34px;')
+.container
+  .row
+    .col-xs-12
+      h1 Schnellerfassung
+  .row
+    .col-xs-12
+      input.form-control(type='text', name='Person', placeholder='Person')
+  .row
+    br
+    .col-xs-12
+      .btn-group(data-toggle='buttons')
+        label.btn.btn-default
+          input#option1(type='radio', name='options')
+          | Schulde ich
+        label.btn.btn-default
+          input#option2(type='radio', name='options')
+          | Schuldet mir
+  .row
+    br
+    .col-xs-7
+      input.form-control.pull-left(type='text', placeholder='Betrag')
+    .col-xs-5
+      select.form-control.pull-right
+        option SFr.
+        option €
+        option $
+  .row
+    br
+    .col-xs-8
+      a.btn.btn-primary Erfassen
+  .row
+  .row
+    .col-xs-12
+      h1 News
+      ul.list-group
+        li.list-group-item
+          | Unbestätigte Schulden
+          span.badge 42
+        li.list-group-item Abrechnungs Anfragen
+        li.list-group-item Other Stuff
+hr
+footer
+  p © Company 2013
+

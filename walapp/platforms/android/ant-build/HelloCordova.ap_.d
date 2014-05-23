@@ -24,8 +24,8 @@ C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\scripts \
 C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\styles \
 C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\views \
 C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\images\09e76d31.yeoman.png \
+C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\scripts\23179b55.scripts.js \
 C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\scripts\4e7c0841.vendor.js \
-C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\scripts\6e92b8e8.scripts.js \
 C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\styles\84e9cf93.main.css \
 C:\dev\webprojects\walapp_client\walapp\platforms\android\assets\www\views\main.html \
 C:\dev\webprojects\walapp_client\walapp\platforms\android\ant-build\AndroidManifest.xml \
